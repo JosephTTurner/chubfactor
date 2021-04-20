@@ -1,5 +1,5 @@
 '''
-main application
+Main application
 '''
 
 def main():
