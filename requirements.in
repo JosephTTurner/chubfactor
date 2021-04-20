@@ -1,0 +1,8 @@
+flask
+flask-login
+
+sqlalchemy
+alembic
+
+click
+
