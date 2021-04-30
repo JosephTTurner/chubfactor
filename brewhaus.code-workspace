@@ -8,15 +8,18 @@
 		"python.pythonPath": "/mnt/c/workspace/brewhaus/venv/bin/python3.8",
 		"python.analysis.autoImportCompletions": true,
 		"files.associations": {
-			".html": "jinja-html",
-			".j2": "jinja-html",
-			".shtml": "jinja-html"
+			"*.html": "jinja-html",
+			"*.j2": "jinja-html",
+			"*.shtml": "jinja-html"
 		},
+        "emmet.includeLanguages": { "jinja-html": "html" },
+        "editor.defaultFormatter": "vscode.emmet",
 		"python.analysis.extraPaths": [
 			"app"
 		],
 		"python.autoComplete.extraPaths": [
 			"app"
-		]
+		],
+		"editor.trimAutoWhitespace": false,
 	}
 }

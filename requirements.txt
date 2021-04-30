@@ -28,13 +28,23 @@ markupsafe==1.1.1
     # via
     #   jinja2
     #   mako
+mysql-connector-python==8.0.24
+    # via -r /mnt/c/workspace/brewhaus/requirements.in
+mysql-connector==2.2.9
+    # via -r /mnt/c/workspace/brewhaus/requirements.in
+protobuf==3.15.8
+    # via mysql-connector-python
 python-dateutil==2.8.1
     # via alembic
+python-dotenv==0.17.1
+    # via -r /mnt/c/workspace/brewhaus/requirements.in
 python-editor==1.0.4
     # via alembic
 six==1.15.0
-    # via python-dateutil
-sqlalchemy==1.4.9
+    # via
+    #   protobuf
+    #   python-dateutil
+sqlalchemy==1.4.12
     # via
     #   -r /mnt/c/workspace/brewhaus/requirements.in
     #   alembic

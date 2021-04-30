@@ -9,14 +9,17 @@ REQ_TXT=${PROJECT_ROOT}/requirements.txt
 venv:
 	if [ ! -z venv ]; then	\
 		virtualenv venv; \
-	fi 
+	fi
 	rm requirements.txt; \
 	pip-compile --output-file=${REQ_TXT} ${REQ_IN}; \
 	. venv/bin/activate; \
 	pip install -r requirements.txt;
 
-make run: venv
+web: venv
 	. venv/bin/activate; \
 	python app/app.py
 
-	
+clean:
+	rm -rf venv
+
+

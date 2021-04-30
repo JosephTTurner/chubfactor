@@ -1,0 +1,37 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace=true
+
+[Makefile]
+indent_style = tab
+
+[.md]
+indent_style = space
+indent_size = 2
+
+[*.py]
+profile=black
+virtual_env=venv
+src_paths=app
+skip_gitignore=true
+multi_line_output=3
+force_grid_wrap=3
+ensure_newline_before_comments=true
+order_by_type=true
+force_alphabetical_sort_within_sections=true
+ensure_newline_before_comments=true
+include_trailing_comma=true
+sections=STDLIB,THIRDPARTY,LOCALFOLDER,FIRSTPARTY
+
+[*.yml]
+indent_style = space
+indent_size = 2
