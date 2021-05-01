@@ -21,7 +21,7 @@ engine = create_engine(connection_string)
 Session = scoped_session(sessionmaker(bind=engine))
 
 @contextmanager
-def session_scope():
+def db_session_scope():
     '''Provide a transactional scope around a series of operations.'''
     session = Session()
     try:
