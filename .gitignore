@@ -1,3 +1,4 @@
 app/config/environment/
 venv/
 .env
+__pycache__
