@@ -12,7 +12,6 @@ def main():
     '''
     main / parent process of application
     '''
-    print(' WSL db host IP on : ', DB_HOST)
     app.run(debug=True, load_dotenv=True)
 
 if __name__ == "__main__":

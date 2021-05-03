@@ -12,6 +12,7 @@
 			"*.j2": "jinja-html",
 			"*.shtml": "jinja-html"
 		},
+        "html.autoClosingTags": true,
         "emmet.includeLanguages": { "jinja-html": "html" },
         "editor.defaultFormatter": "vscode.emmet",
 		"python.analysis.extraPaths": [

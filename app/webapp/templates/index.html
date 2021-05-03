@@ -1,17 +1,24 @@
 {% extends "base.html" %}
+{% from 'macros/table_macros.j2' import base_render_table, render_js_table, include_datatables %}
 
 {% block head %}
     {{ super() }}
-{% endblock %}
 
-{% block header %}
-    {{ super() }}
+    {# Include styles, scripts, etc. that are necessary for datatables #}
+    {{ include_datatables() }}
 {% endblock %}
 
 {% block body %}
     {{ super() }}
+
+    {# render the html for the table #}
+    {{ base_render_table(table_view) }}
 {% endblock %}
 
 {% block footer %}
     {{ super() }}
+
+    {# render the javascript for the datatable #}
+    {# putting this in the foot keeps the rendered html document clean #}
+    {{ render_js_table(table_view) }}
 {% endblock %}

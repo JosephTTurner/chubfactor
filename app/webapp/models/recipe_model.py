@@ -8,8 +8,8 @@ class Recipe(Base):
     name = Column(String(256), nullable=False, unique=True, server_default='Dumbass Didn\'t Name It')
     recipe_type_id = Column(Integer(), ForeignKey('recipe_types.id'))
     chub_factor_id = Column(Integer(), ForeignKey('chub_factors.id'))
-    recipe_ingredients = relationship('RecipeIngredient', lazy='joined', uselist=True)# , backref=backref('recipe'))
-    recipe_steps = relationship('Step', secondary='recipe_steps', lazy='joined', uselist=True)
+    ingredients = relationship('RecipeIngredient', lazy='joined', uselist=True)# , backref=backref('recipe'))
+    steps = relationship('Step', secondary='recipe_steps', lazy='joined', uselist=True)
     recipe_type = relationship('RecipeType', lazy='joined', foreign_keys=[recipe_type_id])
     chub_factor = relationship('ChubFactor', foreign_keys=[chub_factor_id])
 

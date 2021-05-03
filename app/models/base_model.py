@@ -2,6 +2,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, DateTime, Integer
 from sqlalchemy.sql.functions import current_timestamp
 from datetime import datetime
+from db_engine import engine
 
 class MyBase:
     id = Column(Integer(), primary_key=True, nullable=False, autoincrement=True)
@@ -16,3 +17,5 @@ class MyBase:
 
 
 Base = declarative_base(cls=MyBase)
+
+Base.metadata.create_all(engine)
