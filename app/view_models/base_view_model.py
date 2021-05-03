@@ -21,10 +21,16 @@ class BaseViewModel():
         # we have the opportunity to overwrite some attributes if needed.
         # For example, we may need another model class instead of a relationship.
         for key, value in kwargs.items():
+            # Any keys that start with '__' will not be pulled into a datatable
+            # or returned in get_fields()
             setattr(self, key, value)
 
     @classmethod
     def get_fields(cls):
+        '''
+        Get all of the class attributes that don't start with '__'.
+        Relies heavily on atrribute naming conventions for view model classes.
+        '''
         return {
             name: name.title().replace('_',' ')
             for name in cls.__dict__.keys()
