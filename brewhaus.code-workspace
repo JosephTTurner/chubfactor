@@ -22,5 +22,8 @@
 			"app"
 		],
 		"editor.trimAutoWhitespace": false,
+		"[python]": {
+			"editor.defaultFormatter": "ms-python.python"
+		},
 	}
 }

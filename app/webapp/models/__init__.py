@@ -3,5 +3,6 @@ from webapp.models import (
     brewer_model,
     chub_factor_model,
     color_model,
-    recipe_model
+    recipe_model,
+    yeast_model
 )

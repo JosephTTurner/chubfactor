@@ -30,7 +30,7 @@ class Style(Base):
 
 class Brew(Base):
     __tablename__ = 'brews'
-    nick_name = Column(String(256))
+    name = Column(String(256))
     keg_day = Column(DateTime(), nullable=True)
     brew_day = Column(DateTime(), nullable=True)
     style_id = Column(Integer(), ForeignKey('styles.id'))

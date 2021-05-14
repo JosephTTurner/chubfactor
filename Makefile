@@ -15,6 +15,7 @@ venv:
 	. venv/bin/activate; \
 	pip install -r requirements.txt;
 
+
 web: venv
 	. venv/bin/activate; \
 	python app/app.py
@@ -22,4 +23,11 @@ web: venv
 clean:
 	rm -rf venv
 
+reset_database: venv
+	. venv/bin/activate; \
+	alembic downgrade base;
+
+upgrade_database: venv
+	. venv/bin/activate; \
+	alembic upgrade head
 

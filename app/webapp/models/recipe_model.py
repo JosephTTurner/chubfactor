@@ -2,6 +2,14 @@ from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.orm import backref, relationship
 from sqlalchemy.sql.schema import ForeignKey
 from models.base_model import Base
+from webapp.models.yeast_model import Yeast
+
+# string to class dictionary for getting records from ingredient type tables
+ingredient_class_dict = {
+    'Yeast': Yeast,
+    # grain
+    # etc.
+}
 
 class Recipe(Base):
     __tablename__ = 'recipes'
@@ -22,12 +30,36 @@ class Ingredient(Base):
     name = Column(String(256), nullable=False, server_default='Mystery Ingredient')
     ingredient_type_id = Column(Integer(), ForeignKey('ingredient_types.id'), nullable=False)
     chub_factor_id = Column(Integer(), ForeignKey('chub_factors.id'))
+    description = Column(String(1024), nullable=True)
     ingredient_type = relationship('IngredientType', foreign_keys=[ingredient_type_id], uselist=False)
     chub_factor = relationship('ChubFactor', foreign_keys=[chub_factor_id])
+
+    # What to call this?
+    # Id of record on table for ingredient type.
+    class_id = Column(Integer, nullable=True)
+
+    def class_record(self, db_session):
+        '''
+        Get the record from the table for this type of ingredient
+        '''
+        if self.ingredient_type is None or self.class_id is None:
+            return None
+
+        if self.ingredient_type.class_name is None:
+            return None
+
+        class_ = ingredient_class_dict.get(self.ingredient_type.class_name)
+
+        if class_ is None:
+            return None
+
+        return db_session.query(class_).filter_by(id=self.class_id).first()
 
 class IngredientType(Base):
     __tablename__ = 'ingredient_types'
     name = Column(String(256))
+    table_name = Column(String(256), nullable=True)
+    class_name = Column(String(256), nullable=True)
 
 class RecipeIngredient(Base):
     __tablename__ = 'recipe_ingredients'

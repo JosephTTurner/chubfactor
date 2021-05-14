@@ -7,7 +7,10 @@ Create Date: 2021-05-01 16:25:12.717277
 """
 from alembic import op
 import sqlalchemy as sa
+from sqlalchemy import text
+from sqlalchemy.sql.elements import TextClause
 from db_engine import db_session_scope
+from models.base_model import Base
 from webapp.models.color_model import Shade, Color
 from webapp.models.brew_model import Brew, Style
 from webapp.models.brewer_model import BrewCrew, Brewer, Crew
@@ -44,6 +47,7 @@ def upgrade():
         db_session.add(isaac)
         db_session.add(jerome)
         db_session.add(joseph)
+        db_session.commit()
 
         ju_bros = Crew(
             brewers = [isaac, jerome, joseph],
@@ -53,6 +57,7 @@ def upgrade():
             chub_factor = so_chubby
         )
         db_session.add(ju_bros)
+        db_session.commit()
 
         dark = Shade(name='Dark')
         medium = Shade(name='Medium')
@@ -62,6 +67,7 @@ def upgrade():
         db_session.add(medium)
         db_session.add(chocolate)
         db_session.add(red)
+        db_session.commit()
 
         stout = Style(
             name = 'Stout',
@@ -95,21 +101,22 @@ def upgrade():
             color = Color(name='Gold Orange')
         )
         db_session.add(saison)
+        db_session.commit()
         brews = [
             Brew(
-                nick_name = 'Last Night of Camp',
-                brewer = jerome,
-                style = coffeeless_stout,
+                name = 'Last Night of Camp',
+                brewer_id = jerome.id,
+                style_id = coffeeless_stout.id,
             ),
             Brew(
-                nick_name = 'Sass Dropper',
-                brewer = isaac,
-                style = saison
+                name = 'Sass Dropper',
+                brewer_id = isaac.id,
+                style_id = saison.id
             ),
             Brew(
-                nick_name = 'Indian Summer',
-                brewer = joseph,
-                style = american_red_lager,
+                name = 'Indian Summer',
+                brewer_id = joseph.id,
+                style_id = american_red_lager.id,
             )
         ]
 
@@ -117,12 +124,7 @@ def upgrade():
 
 
 def downgrade():
-    with db_session_scope() as db_session:
-        db_session.query(Style).delete()
-        db_session.query(Color).delete()
-        db_session.query(Shade).delete()
-        db_session.query(Brew).delete()
-        db_session.query(Brewer).delete()
-        db_session.query(Crew).delete()
-        db_session.query(BrewCrew).delete()
-        db_session.query(ChubFactor).delete()
+    Base.metadata.drop_all()
+    Base.metadata.create_all()
+
+

@@ -147,7 +147,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('created_date', sa.DateTime(), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
     sa.Column('modified_date', sa.DateTime(), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
-    sa.Column('nick_name', sa.String(length=256), nullable=True),
+    sa.Column('name', sa.String(length=256), nullable=True),
     sa.Column('keg_day', sa.DateTime(), nullable=True),
     sa.Column('brew_day', sa.DateTime(), nullable=True),
     sa.Column('style_id', sa.Integer(), nullable=True),
