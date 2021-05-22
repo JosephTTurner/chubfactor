@@ -4,35 +4,43 @@
 #
 #    pip-compile --output-file=/mnt/c/workspace/brewhaus/requirements.txt /mnt/c/workspace/brewhaus/requirements.in
 #
-alembic==1.5.8
+alembic==1.6.3
     # via -r /mnt/c/workspace/brewhaus/requirements.in
-click==7.1.2
+click==8.0.1
     # via
     #   -r /mnt/c/workspace/brewhaus/requirements.in
     #   flask
 flask-login==0.5.0
     # via -r /mnt/c/workspace/brewhaus/requirements.in
-flask==1.1.2
+flask-wtf==0.14.3
+    # via -r /mnt/c/workspace/brewhaus/requirements.in
+flask==2.0.1
     # via
     #   -r /mnt/c/workspace/brewhaus/requirements.in
     #   flask-login
-greenlet==1.0.0
+    #   flask-wtf
+greenlet==1.1.0
     # via sqlalchemy
-itsdangerous==1.1.0
-    # via flask
-jinja2==2.11.3
+itsdangerous==2.0.1
+    # via
+    #   flask
+    #   flask-wtf
+jinja2==3.0.1
     # via flask
 mako==1.1.4
     # via alembic
-markupsafe==1.1.1
+markupsafe==2.0.1
     # via
     #   jinja2
     #   mako
-mysql-connector-python==8.0.24
+    #   wtforms
+mysql-connector-python==8.0.25
     # via -r /mnt/c/workspace/brewhaus/requirements.in
 mysql-connector==2.2.9
     # via -r /mnt/c/workspace/brewhaus/requirements.in
-protobuf==3.15.8
+mysqlclient==2.0.3
+    # via -r /mnt/c/workspace/brewhaus/requirements.in
+protobuf==3.17.0
     # via mysql-connector-python
 python-dateutil==2.8.1
     # via alembic
@@ -40,13 +48,15 @@ python-dotenv==0.17.1
     # via -r /mnt/c/workspace/brewhaus/requirements.in
 python-editor==1.0.4
     # via alembic
-six==1.15.0
+six==1.16.0
     # via
     #   protobuf
     #   python-dateutil
-sqlalchemy==1.4.12
+sqlalchemy==1.4.15
     # via
     #   -r /mnt/c/workspace/brewhaus/requirements.in
     #   alembic
-werkzeug==1.0.1
+werkzeug==2.0.1
     # via flask
+wtforms==2.3.3
+    # via flask-wtf

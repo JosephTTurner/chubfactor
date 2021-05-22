@@ -1,5 +1,6 @@
 flask
 flask-login
+flask-wtf
 
 sqlalchemy
 alembic
@@ -10,3 +11,4 @@ python-dotenv
 
 mysql-connector
 mysql-connector-python
+mysqlclient

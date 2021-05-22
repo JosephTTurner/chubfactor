@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import Column, ForeignKey
 from sqlalchemy.sql.sqltypes import Enum, Integer, String
 from models.base_model import Base
+from models.type_mixin import TypeMixin
 
 
 class TempMatchEnum(Enum):
@@ -79,10 +80,11 @@ class Yeast(Base):
 
         return TempMatchEnum.NO_OVERLAP, min_temp, max_temp
 
-class YeastType(Base):
+class YeastType(Base, TypeMixin):
     '''
     Wet Ale, Wet Lager, Dry Ale, Dry Lager
     TODO: This could be better thought out
     '''
+    # All we need to define is the table name
     __tablename__ = 'yeast_types'
-    name = Column(String(256), nullable=False)
+    # TypeMixin handles the name field and the choices() function

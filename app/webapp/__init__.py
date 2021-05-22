@@ -7,4 +7,5 @@ from webapp.controllers import (
     calendar_controller,
     brew_controller,
     crew_controller,
+    yeast_controller
     )

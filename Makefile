@@ -13,15 +13,22 @@ venv:
 	rm requirements.txt; \
 	pip-compile --output-file=${REQ_TXT} ${REQ_IN}; \
 	. venv/bin/activate; \
-	pip install -r requirements.txt;
+	pip install -r requirements.txt; \
 
+correct_venv:
+	. venv/bin/activate; \
+	pip uninstall -y mysql-connector-python; \
+	pip install mysql-connector-python;
+
+reset_venv: clean venv correct_venv
+
+clean:
+	rm -rf venv
 
 web: venv
 	. venv/bin/activate; \
 	python app/app.py
 
-clean:
-	rm -rf venv
 
 reset_database: venv
 	. venv/bin/activate; \
