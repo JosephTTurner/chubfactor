@@ -3,59 +3,60 @@
 {% block body %}
     <div id="yeastMatcher">
         <div id="formContainer" class="row">
-            <div id="yeastAdder" class="col-6">
-                <form id="yeastAdderForm">
-                    {{ yeast_form.crsf() }}
+            <div id="yeastAdder">
+                <h2>Can't find your yeast? Add It.</h2>
+                <form id="yeastAdderForm" action="{{ url_for('webapp_blueprint.add_yeast') }}">
+                    {{ yeast_form.csrf_token }}
                     <div class="row">
                         {# <label class="form-label col-4" for="name">Name:</label>
                         <input class="col-8" type="text" id="name" name="name"/> #}
-                        {{ yeast_form.name.label(class='col-4') }}:
+                        <span class='col-4'>{{ yeast_form.name.label }}</span>
                         {{ yeast_form.name(class='col-8') }}
                     </div>
                     <div class="row">
-                        <label class="form-label col-4" for="brand">Brand:</label>
-                        <input class="col-8" type="text" id="brand" name="brand"/>
+                        <span class='col-4'>{{ yeast_form.brand.label }}</span>
+                        {{ yeast_form.brand(class='col-8') }}
                     </div>
                     <div class="row">
-                        <label class="form-label col-4" for="ideal_low_temp">Ideal Low Temp:</label>
-                        <input class="col-8" type="integer" id="ideal_low_temp" name="ideal_low_temp"/>
+                        <span class='col-4'>{{ yeast_form.ideal_low_temp.label }}</span>
+                        {{ yeast_form.ideal_low_temp(class='col-8') }}
                     </div>
                     <div class="row">
-                        <label class="form-label col-4" for="ideal_high_temp">Ideal High Temp:</label>
-                        <input class=" col-8" type="integer" id="ideal_high_temp" name="ideal_high_temp"/>
+                        <span class='col-4'>{{ yeast_form.ideal_high_temp.label }}</span>
+                        {{ yeast_form.ideal_high_temp(class='col-8') }}
                     </div>
                     <div class="row">
-                        <label class="form-label col-4" for="min_low_temp">Min Low Temp:</label>
-                        <input class=" col-8" type="integer" id="min_low_temp" name="min_low_temp"/>
+                        <span class='col-4'>{{ yeast_form.min_low_temp.label }}</span>
+                        {{ yeast_form.min_low_temp(class='col-8') }}
                     </div>
                     <div class="row">
-                        <label class="form-label col-4" for="max_high_temp">Max High Temp:</label>
-                        <input class=" col-8" type="integer" id="max_high_temp" name="max_high_temp"/>
+                        <span class='col-4'>{{ yeast_form.max_high_temp.label }}</span>
+                        {{ yeast_form.max_high_temp(class='col-8') }}
                     </div>
                     <div class="row">
-                        <label class="form-label col-4" for="description">Description:</label>
-                        <input class=" col-8" type="text" id="description" name="description"/>
+                        <span class='col-4'>{{ yeast_form.description.label }}</span>
+                        {{ yeast_form.description(class='col-8') }}
                     </div>
-                    <div class="row">
-                        <label class="form-label col-4" for="yeast_type_id">Yeast Type:</label>
-                        <select class=" col-8" id="yeast_type_id" name="yeast_type_id">
-                        {# options #}
+                    {# <div class="row">
+                        <span class='col-4'>{{ yeast_form.yeast_type_id.label }}</span>
+                        {{ yeast_form.yeast_type_id(class='col-8') }}
+
                         </select>
-                    </div>
-                    <input class="form-button col-12" type="submit"/>
+                    </div> #}
+                    <input class="form-button col-2" type="submit"/>
                 </form>
             </div>
-            <div id="yeastPicker" class="col-6">
-                <form id="yeastPickerForm">
-                    <label class="form-label col-4" for="yeast_one">Yeast One:</label>
-                    <select class=" col-8" id="yeast_one">
+            <div id="yeastPicker">
+                <h2>Choose Yeasts to Compare.</h2>
+                <form id="yeastPickerForm" action="{{ url_for('webapp_blueprint.compare_yeast') }}">
+                    <select class=" col-7" id="yeast_one">
                     {# options #}
                     </select>
                     <label class="form-label col-4" for="yeast_two">Yeast Two:</label>
-                    <select class=" col-8" id="yeast_two">
+                    <select class=" col-7" id="yeast_two">
                     {# options #}
                     </select>
-                    <input class="form-button col-12" type="submit"/>
+                    <input class="form-button col-2" type="submit"/>
                 </form>
             </div>
         </div>

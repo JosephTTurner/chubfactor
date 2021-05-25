@@ -7,8 +7,10 @@ from wtforms.fields.core import IntegerField, SelectField
 from wtforms.validators import Required
 from wtforms.fields.simple import TextAreaField, TextField
 
-from webapp.models.yeast_model import YeastType
+from db_engine import db_session_scope
+from webapp.models.yeast_model import Yeast
 
+YEAST_CHOICES = None
 
 class YeastForm(FlaskForm):
     default_validators = [Required()]
@@ -32,7 +34,7 @@ class YeastForm(FlaskForm):
         'Min Low Temp:',
         validators=default_validators,
     )
-    max_low_temp = IntegerField(
+    max_high_temp = IntegerField(
         'Max Low Temp:',
         validators=default_validators,
     )
@@ -43,3 +45,17 @@ class YeastForm(FlaskForm):
     #     'Type:',
     #     choices=yeast_types
     # )
+
+def set_yeast_choices(db_session=None):
+    if db_session is None:
+        with db_session_scope() as db_session:
+          YEAST_CHOICES = db_session.query(Yeast).all()
+    else:
+        YEAST_CHOICES = db_session.query(Yeast).all()
+
+
+class YeastCompareForm(FlaskForm):
+    # assert YEAST_CHOICES is not None, "Yeasts table or the YEAST_CHOICES variable has not been populated."
+    yeast_one = SelectField(
+        'Yeast One',
+        choices=YEAST_CHOICES)

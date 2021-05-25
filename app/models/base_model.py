@@ -15,6 +15,10 @@ class MyBase:
     def clone(self):
         return self.__class__(**self.as_dict())
 
+    @classmethod
+    def get_by_id(cls, db_session, id_: int):
+        db_session.query(cls).filter_by(id=id_).first()
+
 
 Base = declarative_base(cls=MyBase)
 
