@@ -31,7 +31,7 @@ def compare_yeast():
         with db_session_scope() as db_session:
             yeast_one = Yeast.get_by_id(int(yeast_one_id))
             yeast_two = Yeast.get_by_id(int(yeast_two_id))
-            compare_results = yeast_one.can_ferm_with(yeast_two)
+            match_enum, min_temp, max_temp = yeast_one.can_ferm_with(yeast_two)
         # process compare results
 
 
