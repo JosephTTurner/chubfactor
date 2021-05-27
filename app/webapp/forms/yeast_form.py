@@ -57,5 +57,8 @@ def set_yeast_choices(db_session=None):
 class YeastCompareForm(FlaskForm):
     # assert YEAST_CHOICES is not None, "Yeasts table or the YEAST_CHOICES variable has not been populated."
     yeast_one = SelectField(
-        'Yeast One',
+        'Yeast One:',
+        choices=YEAST_CHOICES)
+    yeast_two = SelectField(
+        'Yeast Two:',
         choices=YEAST_CHOICES)

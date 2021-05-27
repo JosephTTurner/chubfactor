@@ -35,7 +35,7 @@ class Yeast(Base):
     yeast_type_id = Column(Integer, ForeignKey('yeast_types.id'), nullable=False)
     yeast_type = relationship('YeastType', uselist=False)
 
-    def can_ferm_with(self, yeast2: 'Yeast') -> Tuple[TempMatchEnum, int, int]:
+    def check_temp_match(self, yeast2: 'Yeast') -> Tuple[TempMatchEnum, int, int]:
         '''
         Determine if this yeast's ideals and extremes allign with another.
 

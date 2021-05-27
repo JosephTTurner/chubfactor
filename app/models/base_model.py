@@ -1,3 +1,4 @@
+from typing import Type
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, DateTime, Integer
 from sqlalchemy.sql.functions import current_timestamp
@@ -16,7 +17,7 @@ class MyBase:
         return self.__class__(**self.as_dict())
 
     @classmethod
-    def get_by_id(cls, db_session, id_: int):
+    def get_by_id(cls, db_session, id_: int) -> 'MyBase':
         db_session.query(cls).filter_by(id=id_).first()
 
 
