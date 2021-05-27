@@ -18,6 +18,9 @@ class MyBase:
 
     @classmethod
     def get_by_id(cls, db_session, id_: int) -> 'MyBase':
+        '''
+        Return the first and only record matching the id.
+        '''
         db_session.query(cls).filter_by(id=id_).first()
 
 

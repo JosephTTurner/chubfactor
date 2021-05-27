@@ -35,8 +35,8 @@ def compare_yeast():
         yeast_one_id = form.data.get('yeast_one')
         yeast_two_id = form.data.get('yeast_two')
         with db_session_scope() as db_session:
-            yeast_one = Yeast.get_by_id(int(yeast_one_id))
-            yeast_two = Yeast.get_by_id(int(yeast_two_id))
+            yeast_one = Yeast.get_by_id(db_session, int(yeast_one_id))
+            yeast_two = Yeast.get_by_id(db_session, int(yeast_two_id))
             match_enum, min_temp, max_temp = yeast_one.check_temp_match(yeast_two)
 
             match_results = YeastMatchResultsViewModel(
