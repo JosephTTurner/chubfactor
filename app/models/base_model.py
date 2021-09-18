@@ -1,6 +1,7 @@
 from typing import Type
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, DateTime, Integer
+from sqlalchemy.orm.scoping import scoped_session
 from sqlalchemy.sql.functions import current_timestamp
 from datetime import datetime
 from db_engine import engine
@@ -17,7 +18,7 @@ class MyBase:
         return self.__class__(**self.as_dict())
 
     @classmethod
-    def get_by_id(cls, db_session, id_: int) -> 'MyBase':
+    def get_by_id(cls, db_session:scoped_session, id_: int) -> 'MyBase':
         '''
         Return the first and only record matching the id.
         '''

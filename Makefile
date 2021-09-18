@@ -6,6 +6,8 @@ PYTHON_PATH=${VENV_PATH}/bin/python3
 REQ_IN=${PROJECT_ROOT}/requirements.in
 REQ_TXT=${PROJECT_ROOT}/requirements.txt
 
+default: run
+
 venv:
 	if [ ! -z venv ]; then	\
 		virtualenv venv; \
@@ -25,7 +27,7 @@ reset_venv: clean venv correct_venv
 clean:
 	rm -rf venv
 
-web: venv
+run: venv
 	. venv/bin/activate; \
 	python app/app.py
 

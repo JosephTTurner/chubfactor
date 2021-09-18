@@ -1,5 +1,6 @@
 from typing import Tuple
 from sqlalchemy.orm import relationship
+from sqlalchemy.orm.scoping import scoped_session
 from sqlalchemy.sql.schema import Column, ForeignKey
 from sqlalchemy.sql.sqltypes import Enum, Integer, String
 from models.base_model import Base
@@ -22,6 +23,18 @@ class TempMatchEnum(Enum):
     IDEAL_OVERLAP = 4
     PERFECT_MATCH = 5
 
+    names = {
+        0: 'No Overlap - There is no common temperature range for the yeasts to ferment together.',
+        1: 'Extreme Overlap - Extreem range of yeast one overlaps with extreme range of yeast two.',
+        2: 'Extreme-Ideal Overlap - Extreme range of yeast one overlaps with ideal range of yeast two.',
+        3: 'Ideal-Extreme Overlap - Ideal range of yeast one overlaps with extreme range of yeast two.',
+        4: 'Ideal Overlap - Ideal range of yeast one overlaps with ideal range of yeast two.',
+        5: 'Perfect Match - Ideal ranges for both tempuratures are the same.'
+    }
+
+    @classmethod
+    def get_name(cls, member:'TempMatchEnum'):
+        return cls.names.get(member)
 
 class Yeast(Base):
     __tablename__ = 'yeasts'
@@ -34,6 +47,10 @@ class Yeast(Base):
     description = Column(String(1024), nullable=True)
     yeast_type_id = Column(Integer, ForeignKey('yeast_types.id'), nullable=False)
     yeast_type = relationship('YeastType', uselist=False)
+
+    @classmethod
+    def choices(cls, db_session:scoped_session):
+        return [(record.id, f'{record.name} - {record.yeast_type.name}') for record in db_session.query(cls).all()]
 
     def check_temp_match(self, yeast2: 'Yeast') -> Tuple[TempMatchEnum, int, int]:
         '''

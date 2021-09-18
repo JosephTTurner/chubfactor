@@ -5,7 +5,7 @@
         <div id="formContainer" class="row">
             <div id="yeastAdder">
                 <h2>Can't find your yeast? Add It.</h2>
-                <form id="yeastAdderForm" action="{{ url_for('webapp_blueprint.add_yeast') }}">
+                <form id="yeastAdderForm" action="{{ url_for('webapp_blueprint.add_yeast') }}" method="post">
                     {{ yeast_form.csrf_token }}
                     <div class="row form-group">
                         {# <label class="form-label col-4" for="name">Name:</label>
@@ -34,15 +34,14 @@
                         <div class='col-8'>{{ yeast_form.max_high_temp(class='form-control') }}</div>
                     </div>
                     <div class="row form-group">
+                        <span class='col-4'>{{ yeast_form.yeast_type_id.label }}</span>
+                        <div class='col-8'>{{ yeast_form.yeast_type_id(class='form-control') }}</div>
+                    </div>
+                    <div class="row form-group">
                         <span class='col-4'>{{ yeast_form.description.label }}</span>
                         <div class='col-8'>{{ yeast_form.description(class='form-control') }}</div>
                     </div>
-                    {# <div class="row">
-                        <span class='col-4'>{{ yeast_form.yeast_type_id.label }}</span>
-                        <div class='col-8'>{{ yeast_form.yeast_type_id(class='form-control') }}</div>
 
-                        </select>
-                    </div> #}
                     <input class="form-button col-2" type="submit"/>
                 </form>
             </div>
