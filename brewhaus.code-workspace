@@ -5,7 +5,7 @@
 		},
 	],
 	"settings": {
-		"python.pythonPath": "/mnt/c/workspace/brewhaus/venv/bin/python3.8",
+		"python.pythonPath": "venv/bin/python",
 		"python.analysis.autoImportCompletions": true,
 		"files.associations": {
 			"*.html": "jinja-html",
