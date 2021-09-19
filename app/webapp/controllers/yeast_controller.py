@@ -7,34 +7,34 @@ from db_engine import db_session_scope
 from webapp.models.yeast_model import TempMatchEnum, Yeast
 from webapp.view_models.yeast_view_model import YeastMatchResultsViewModel
 
-@bp.route('/yeast_matcher')
+@bp.route("/yeast_matcher")
 def yeast_matcher_view():
     with db_session_scope() as db_session:
         yeast_form = YeastForm.build(db_session)
         compare_form = YeastCompareForm.build(db_session)
 
     return render_template(
-        'yeast_matcher.html',
+        "yeast_matcher.html",
         yeast_form=yeast_form,
         compare_form=compare_form,
         match_results=None)
 
-@bp.route('/add_yeast', methods=['POST'])
+@bp.route("/add_yeast", methods=["POST"])
 def add_yeast():
     data = dict(deepcopy(request.form))
-    del data['csrf_token']
+    del data["csrf_token"]
     yeast = Yeast(**data)
     with db_session_scope() as db_session:
         # handle near duplicates?
         db_session.add(yeast)
 
-    return redirect(url_for('webapp_blueprint.yeast_matcher_view'))
+    return redirect(url_for("webapp_blueprint.yeast_matcher_view"))
 
-@bp.route('/compare_yeast', methods=['POST'])
+@bp.route("/compare_yeast", methods=["POST"])
 def compare_yeast():
     # if form.validate_on_submit():
-    yeast_one_id = request.form.get('yeast_one')
-    yeast_two_id = request.form.get('yeast_two')
+    yeast_one_id = request.form.get("yeast_one")
+    yeast_two_id = request.form.get("yeast_two")
 
     with db_session_scope() as db_session:
         # yeast_one = Yeast.get_by_id(db_session, int(yeast_one_id))
@@ -54,10 +54,10 @@ def compare_yeast():
         compare_form = YeastCompareForm.build(db_session)
 
     return render_template(
-        'yeast_matcher.html',
+        "yeast_matcher.html",
         yeast_form=yeast_form,
         compare_form=compare_form,
         match_results=match_results)
 
 # else:
-    return redirect(url_for('webapp_blueprint.yeast_matcher_view'))
+    return redirect(url_for("webapp_blueprint.yeast_matcher_view"))

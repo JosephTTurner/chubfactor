@@ -1,3 +1,5 @@
+include Makefile.config
+
 PROJECT_ROOT=${PWD}
 VENV_PATH=${PROJECT_ROOT}/venv
 VENV_ACTIVATE=${VENV_PATH}/bin/activate
@@ -7,12 +9,14 @@ REQ_IN=${PROJECT_ROOT}/requirements.in
 REQ_TXT=${PROJECT_ROOT}/requirements.txt
 
 default: run
-
+	
 venv:
 	if [ ! -z venv ]; then	\
-		virtualenv venv; \
+		python3 -m venv venv; \
 	fi
 	rm requirements.txt; \
+	pip install --upgrade pip; \
+	pip install pip-tools; \
 	pip-compile --output-file=${REQ_TXT} ${REQ_IN}; \
 	. venv/bin/activate; \
 	pip install -r requirements.txt; \
@@ -27,10 +31,24 @@ reset_venv: clean venv correct_venv
 clean:
 	rm -rf venv
 
-run: venv
+run: venv upgrade_database
 	. venv/bin/activate; \
 	python app/app.py
 
+
+# Database
+install_mysql:
+	sudo apt install mariadb-server;
+
+CREATE_DATABASE=create database if not exists ${MYSQL_DATABASE_NAME}
+CREATE_USER=use mysql; create or replace user '${MYSQL_DATABASE_NAME}'@'%' identified by '${MYSQL_PASSWORD}'
+GRANT_ALL_PRIVLEGES=grant all privileges on ${MYSQL_DATABASE_NAME}.* to '${MYSQL_DATABASE_NAME}'@'%' with grant option
+
+setup_mysql: 
+	sudo mysql -h ${MYSQL_HOST} -u root -e "${CREATE_DATABASE};";\
+	sudo mysql -h ${MYSQL_HOST} -u root -e "${CREATE_USER}; ${GRANT_ALL_PRIVLEGES}; flush privileges;";
+
+init_database: install_mysql setup_mysql upgrade_database
 
 reset_database: venv
 	. venv/bin/activate; \
