@@ -2,17 +2,17 @@
 
 ## Workflow and Craft
 - Integrate testing structure and start building test first solutions
-    1. basic
-    2. smart
-    3. robust
-    4. smarter
+    - [pytest](https://docs.pytest.org/en/6.2.x/getting-started.html)
+        - [part of application code](https://docs.pytest.org/en/6.2.x/goodpractices.html#tests-as-part-of-application-code)
+        - [tox](https://tox.readthedocs.io/en/latest/example/pytest.html)
+        - [fixtures](https://docs.pytest.org/en/6.2.x/fixture.html#fixtures)
 
 - Build less casually
     - make estimates
     - set timers
     - set stop watch
     - use trello / similar?
-
+---
 ## Benchmarks
 - ~~Basic app structure~~
 - ~~Use git for version control~~
