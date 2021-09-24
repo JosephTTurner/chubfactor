@@ -18,6 +18,11 @@
 - ~~Use git for version control~~
 - ~~Streamline schema migrations~~
 - ~~Display one page with dummy data pulled from database~~
+- ~~Set up on pi~~
+    - ~~code~~
+    - ~~database~~
+    - ~~make-ify~~
+- ~~SSH-Remote to pi from VS Code on Windows (using keys - no password everytime)~~
 - Use hosted repository
     - Pay to make private
 - Host remotely

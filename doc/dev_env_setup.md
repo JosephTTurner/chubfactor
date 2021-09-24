@@ -82,13 +82,19 @@ I guess one can just check the *.code-workspace file but here is what it looked 
 		},
 	],
 	"settings": {
-		"python.pythonPath": "/mnt/c/workspace/brewhaus/venv/bin/python3.8",
+		"python.testing.pytestArgs": [
+        	"app"
+    	],
+		"python.testing.unittestEnabled": false,
+		"python.testing.pytestEnabled": true,
+		"python.defaultInterpreterPath": "venv/bin/python",
 		"python.analysis.autoImportCompletions": true,
 		"files.associations": {
 			"*.html": "jinja-html",
 			"*.j2": "jinja-html",
 			"*.shtml": "jinja-html"
 		},
+        "html.autoClosingTags": true,
         "emmet.includeLanguages": { "jinja-html": "html" },
         "editor.defaultFormatter": "vscode.emmet",
 		"python.analysis.extraPaths": [
@@ -98,6 +104,22 @@ I guess one can just check the *.code-workspace file but here is what it looked 
 			"app"
 		],
 		"editor.trimAutoWhitespace": false,
+		"[python]": {
+			"editor.defaultFormatter": "ms-python.python"
+		},
+		"remote.SSH.remoteServerListenOnSocket": true,
 	}
 }
 ```
+
+## Edit Remote Code on Raspberry Pi via VS Code SSH (optional but fun)
+I followed [these instructions](https://code.visualstudio.com/docs/remote/troubleshooting) to create the necessary keys and connections to open the code located on my rasperry pi without entering a password everytime.
+
+Where it says this in your ssh config file...
+```config
+Host name-of-ssh-host-here
+    User your-user-name-on-host
+    HostName host-fqdn-or-ip-goes-here
+    IdentityFile ~/.ssh/id_rsa-remote-ssh
+```
+I was confused by the "~" for some reason also pointing to my Windows User directory. I just copied the identity file over to `C:\\Users\<user name>\.ssh` and it worked.
