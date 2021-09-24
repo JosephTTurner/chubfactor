@@ -3,7 +3,7 @@ Main application
 '''
 from flask import Flask
 from webapp import webapp_blueprint
-from config.config import DB_HOST, SECRET_KEY
+from config.config import SECRET_KEY
 
 app = Flask(__name__)
 app.register_blueprint(webapp_blueprint)

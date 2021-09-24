@@ -5,7 +5,7 @@
 		},
 	],
 	"settings": {
-		"python.pythonPath": "venv/bin/python",
+		"python.defaultInterpreterPath": "venv/bin/python",
 		"python.analysis.autoImportCompletions": true,
 		"files.associations": {
 			"*.html": "jinja-html",
@@ -25,5 +25,6 @@
 		"[python]": {
 			"editor.defaultFormatter": "ms-python.python"
 		},
+		"remote.SSH.remoteServerListenOnSocket": true,
 	}
 }

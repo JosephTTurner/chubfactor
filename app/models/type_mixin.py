@@ -1,6 +1,6 @@
 '''
 Mixin for data classes that represent types / options that are often enumerated.
-May prefer a solution that explicitly extends and enum class either from SA or Python.
+May prefer a solution that explicitly extends an enum class either from SA or Python.
 '''
 
 from sqlalchemy.sql.schema import Column
