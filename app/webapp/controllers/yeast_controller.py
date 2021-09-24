@@ -7,6 +7,7 @@ from db_engine import db_session_scope
 from webapp.models.yeast_model import TempMatchEnum, Yeast
 from webapp.view_models.yeast_view_model import YeastMatchResultsViewModel
 
+
 @bp.route("/yeast_matcher")
 def yeast_matcher_view():
     with db_session_scope() as db_session:
@@ -17,7 +18,9 @@ def yeast_matcher_view():
         "yeast_matcher.html",
         yeast_form=yeast_form,
         compare_form=compare_form,
-        match_results=None)
+        match_results=None,
+    )
+
 
 @bp.route("/add_yeast", methods=["POST"])
 def add_yeast():
@@ -29,6 +32,7 @@ def add_yeast():
         db_session.add(yeast)
 
     return redirect(url_for("webapp_blueprint.yeast_matcher_view"))
+
 
 @bp.route("/compare_yeast", methods=["POST"])
 def compare_yeast():
@@ -47,7 +51,7 @@ def compare_yeast():
             match_enum=match_enum,
             match_description=match_description,
             min_temp=min_temp,
-            max_temp=max_temp
+            max_temp=max_temp,
         )
 
         yeast_form = YeastForm.build(db_session)
@@ -57,7 +61,8 @@ def compare_yeast():
         "yeast_matcher.html",
         yeast_form=yeast_form,
         compare_form=compare_form,
-        match_results=match_results)
+        match_results=match_results,
+    )
 
-# else:
+    # else:
     return redirect(url_for("webapp_blueprint.yeast_matcher_view"))

@@ -8,21 +8,22 @@ from contextlib import contextmanager
 from config import config
 
 connection_string = (
-    f'{config.DB_DIALECT}://' +
-    f'{config.DB_USER}:' +
-    f'{config.DB_PASS}@' +
-    f'{config.DB_HOST}:' +
-    f'{config.DB_PORT}/' +
-    f'{config.DB_SCHEMA}'
+    f"{config.DB_DIALECT}://"
+    + f"{config.DB_USER}:"
+    + f"{config.DB_PASS}@"
+    + f"{config.DB_HOST}:"
+    + f"{config.DB_PORT}/"
+    + f"{config.DB_SCHEMA}"
 )
 
 engine = create_engine(connection_string)
 
 Session = scoped_session(sessionmaker(bind=engine))
 
+
 @contextmanager
 def db_session_scope() -> Session:
-    '''Provide a transactional scope around a series of operations.'''
+    """Provide a transactional scope around a series of operations."""
     session = Session()
     try:
         yield session
@@ -33,13 +34,14 @@ def db_session_scope() -> Session:
     finally:
         session.close()
 
+
 def create_database_if_not_exists():
     test_engine = create_engine(
-        f'{config.DB_DIALECT}://' +
-        f'{config.DB_USER}:' +
-        f'{config.DB_PASS}@' +
-        f'{config.DB_HOST}:' +
-        f'{config.DB_PORT}'
+        f"{config.DB_DIALECT}://"
+        + f"{config.DB_USER}:"
+        + f"{config.DB_PASS}@"
+        + f"{config.DB_HOST}:"
+        + f"{config.DB_PORT}"
     )
     conn = test_engine.connect()
     if not conn.dialect.has_schema(conn, config.DB_SCHEMA):

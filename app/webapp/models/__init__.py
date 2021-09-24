@@ -4,5 +4,5 @@ from webapp.models import (
     chub_factor_model,
     color_model,
     recipe_model,
-    yeast_model
+    yeast_model,
 )

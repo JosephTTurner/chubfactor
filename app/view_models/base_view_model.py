@@ -1,13 +1,14 @@
-'''
+"""
 Base view model for compiling data model info to pass to view.
 It may be easier to just explicitly define all the attributes,
 but this base class can provide a lot of convenience.
 Especially when interfacing with table view models.
-'''
+"""
 from models.base_model import Base
 
-class BaseViewModel():
-    def __init__(self, model: Base = None, **kwargs) -> 'BaseViewModel':
+
+class BaseViewModel:
+    def __init__(self, model: Base = None, **kwargs) -> "BaseViewModel":
 
         # If a sub class of declarative base is passed,
         # pull attributes of data model class into view model class.
@@ -27,12 +28,12 @@ class BaseViewModel():
 
     @classmethod
     def get_fields(cls):
-        '''
+        """
         Get all of the class attributes that don't start with '__'.
         Relies heavily on atrribute naming conventions for view model classes.
-        '''
+        """
         return {
-            name: name.title().replace('_',' ')
+            name: name.title().replace("_", " ")
             for name in cls.__dict__.keys()
-            if not name.startswith('__')
+            if not name.startswith("__")
         }

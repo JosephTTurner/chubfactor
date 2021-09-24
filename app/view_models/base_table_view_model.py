@@ -1,13 +1,14 @@
-'''
+"""
 A generic model for generating datatables on html pages.
 Intended to build off of view models that are generated from SQLAlchemy classes.
 Either a view model class, a list of view models, or both can be past to __init__().
 
-'''
+"""
 
 from typing import List
 from flask.templating import render_template
 from view_models.base_view_model import BaseViewModel
+
 
 class BaseTableViewModel:
     model_list = None
@@ -18,19 +19,19 @@ class BaseTableViewModel:
 
     def __init__(
         self,
-        model_list:List[BaseViewModel]=None,
-        view_model_class:BaseViewModel=None,
-        display_names:dict=None,
-        **kwargs
-        ):
+        model_list: List[BaseViewModel] = None,
+        view_model_class: BaseViewModel = None,
+        display_names: dict = None,
+        **kwargs,
+    ):
 
         self.data = model_list
 
-        table_id = kwargs.get('table_id')
+        table_id = kwargs.get("table_id")
         if table_id is not None:
             self.table_id = table_id
         elif model_list is not None:
-            self.table_id = f'{model_list[0].__class__.__name__.lower()}Table'
+            self.table_id = f"{model_list[0].__class__.__name__.lower()}Table"
 
         if display_names is None and model_list is not None:
             # if there is no display names dictionary is based,
@@ -45,10 +46,10 @@ class BaseTableViewModel:
             setattr(self, key, value)
 
     def render(self):
-        '''
+        """
         Returns html of rendered datatable with necessary js.
         Doesn't necessarily put the datatables CDN's or javascript in a desirable place.
         Requires call to safe in jinja template:
             `{{ table_view.render()|safe }}`
-        '''
-        return render_template('partials/base_table_view.html', table_model=self)
+        """
+        return render_template("partials/base_table_view.html", table_model=self)

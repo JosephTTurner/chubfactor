@@ -2,6 +2,7 @@ app/config/environment/
 venv/
 .env
 Makefile.config
+.vscode
 
 # Below from https://github.com/martinohanlon/flightlight/issues/1
 

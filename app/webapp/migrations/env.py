@@ -7,7 +7,7 @@ import webapp.models.brew_model
 import webapp.models.brewer_model
 import webapp.models.recipe_model
 from models.base_model import Base
-from db_engine import engine, connection_string #, create_database_if_not_exists
+from db_engine import engine, connection_string  # , create_database_if_not_exists
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -63,9 +63,7 @@ def run_migrations_online():
     connectable = engine
     # create_database_if_not_exists()
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()

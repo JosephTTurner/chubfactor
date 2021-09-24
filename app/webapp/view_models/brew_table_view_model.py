@@ -8,6 +8,7 @@ class BrewTableViewModel(BaseTableViewModel):
         super(BrewTableViewModel, self).__init__(
             brew_view_models,
             view_model_class=BrewViewModel,
-            table_id = 'brewTable',
-            ajax_endpoint = '/brew_table_data',
-            **kwargs)
+            table_id="brewTable",
+            ajax_endpoint="/brew_table_data",
+            **kwargs
+        )
