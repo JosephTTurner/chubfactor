@@ -28,7 +28,11 @@ correct_venv:
 
 reset_venv: clean venv correct_venv
 
-clean:
+clean_py:
+	find . -type f -name "*.py[co]" -delete	
+	find . -type d -name "__pycache__" -delete
+	
+clean: clean_py
 	rm -rf venv
 
 run: venv upgrade_database
