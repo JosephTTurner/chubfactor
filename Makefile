@@ -9,16 +9,16 @@ REQ_IN=${PROJECT_ROOT}/requirements.in
 REQ_TXT=${PROJECT_ROOT}/requirements.txt
 
 default: run
-	
+
 venv:
 	if [ ! -z venv ]; then	\
-		python3 -m venv venv; \
+		python$(PYTHON_VERSION) -m venv venv; \
 	fi
 	rm requirements.txt; \
+	. venv/bin/activate; \
 	pip install --upgrade pip; \
 	pip install pip-tools; \
 	pip-compile --output-file=${REQ_TXT} ${REQ_IN}; \
-	. venv/bin/activate; \
 	pip install -r requirements.txt; \
 
 correct_venv:
@@ -29,9 +29,9 @@ correct_venv:
 reset_venv: clean venv correct_venv
 
 clean_py:
-	find . -type f -name "*.py[co]" -delete	
+	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
-	
+
 clean: clean_py
 	rm -rf venv
 
@@ -48,13 +48,13 @@ CREATE_DATABASE=create database if not exists ${MYSQL_DATABASE_NAME}
 CREATE_USER=use mysql; create or replace user '${MYSQL_DATABASE_NAME}'@'%' identified by '${MYSQL_PASSWORD}'
 GRANT_ALL_PRIVLEGES=grant all privileges on ${MYSQL_DATABASE_NAME}.* to '${MYSQL_DATABASE_NAME}'@'%' with grant option
 
-setup_mysql: 
+setup_mysql:
 	sudo mysql -h ${MYSQL_HOST} -u root -e "${CREATE_DATABASE};";\
 	sudo mysql -h ${MYSQL_HOST} -u root -e "${CREATE_USER}; ${GRANT_ALL_PRIVLEGES}; flush privileges;";
 
 init_database: install_mysql setup_mysql upgrade_database
 
-reset_database: venv
+downgrade_database: venv
 	. venv/bin/activate; \
 	alembic downgrade base;
 

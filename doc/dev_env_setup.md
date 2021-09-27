@@ -6,6 +6,8 @@
 
 There is some wierdness in how WSL2 handles localhost/127.0.0.1/etc. Basically WSL2 creates it's own separate understood network addresses for itself and the native Windows host. So it's necessary to make a few adjustments to your set up that you wouldn't have to with WSL1.
 
+Hopefully WSL2 will be updated to play more nicely with the Windows Host.
+
 1. Install WSL2 on compatible Windows machine.
     - I used Ubuntu 20.04 as my hosted OS
     - Install Windows Terminal and set WSL2 as your default
@@ -37,6 +39,9 @@ There is some wierdness in how WSL2 handles localhost/127.0.0.1/etc. Basically W
         export WSL_HOST_IP=$(awk '/nameserver/ { print $2 }' /etc/resolv.conf)
         ```
     - You can later use this environment variable as the target IP address for a connection to a database hosted on your native windows machine MySQL Service
+
+6. For more consistent connectivity / networking
+    - (Follow these instructions)[https://github.com/microsoft/WSL/issues/4150#issuecomment-504209723]
 
 ## VS Code
 
