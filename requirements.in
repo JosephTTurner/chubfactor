@@ -14,3 +14,5 @@ python-dotenv
 mysql-connector
 mysql-connector-python
 mysqlclient
+
+greenlet

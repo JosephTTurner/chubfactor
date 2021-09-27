@@ -4,7 +4,7 @@ PROJECT_ROOT=${PWD}
 VENV_PATH=${PROJECT_ROOT}/venv
 VENV_ACTIVATE=${VENV_PATH}/bin/activate
 APP_ROOT=${PROJECT_ROOT}/app
-PYTHON_PATH=${VENV_PATH}/bin/python3
+PYTHON_PATH=${VENV_PATH}/bin/python$(PYTHON_VERSION)
 REQ_IN=${PROJECT_ROOT}/requirements.in
 REQ_TXT=${PROJECT_ROOT}/requirements.txt
 
@@ -37,7 +37,7 @@ clean: clean_py
 
 run: venv upgrade_database
 	. venv/bin/activate; \
-	python app/app.py
+	python$(PYTHON_VERSION) app/app.py
 
 
 # Database
