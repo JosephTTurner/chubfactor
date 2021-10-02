@@ -81,7 +81,7 @@ update_prod_bash:
 
 update:
 	cd ~/workspace/chubfactor/
-	eval "$(ssh-agent -s)"
+	eval "\$(ssh-agent -s)"
 	ssh-add ~/.ssh/id_rsa
 	git pull
 	make upgrade_database
