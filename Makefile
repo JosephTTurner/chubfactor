@@ -83,7 +83,6 @@ update_prod_bash:
 update:
 	cd ~/workspace/chubfactor/
 	git pull
-	make reset_venv
 	make upgrade_database
 	~/restart_nginx
 	exit
