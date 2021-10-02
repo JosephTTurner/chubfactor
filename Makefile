@@ -73,10 +73,10 @@ upgrade_database: venv
 # PIPELINES(?)
 # -----------------------------------------------------------------------------------
 
-update_prod:
+update_prod_make:
 	ssh -i ~/.ssh/id_rsa-remote-ssh ${PROD_USER}@${PROD_SERVER} "cd workspace/chubfactor; make update;"
 
-update_prod_bash:
+update_prod:
 	ssh -i ~/.ssh/id_rsa-remote-ssh ${PROD_USER}@${PROD_SERVER} "~/update;"
 
 update:
