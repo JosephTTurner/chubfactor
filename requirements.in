@@ -3,7 +3,7 @@ pytest
 flask
 flask-login
 flask-wtf
-flask_sa_session
+flask_sqlalchemy_session
 
 sqlalchemy
 alembic
