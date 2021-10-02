@@ -79,6 +79,7 @@ update_prod_make:
 update_prod:
 	ssh -i ~/.ssh/id_rsa-remote-ssh ${PROD_USER}@${PROD_SERVER} "~/update;"
 
+# test comment
 update:
 	cd ~/workspace/chubfactor/
 	eval "$$(ssh-agent -s)"
