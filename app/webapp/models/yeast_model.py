@@ -6,6 +6,8 @@ from sqlalchemy.sql.sqltypes import Enum, Integer, String
 from models.base_model import Base
 from models.type_mixin import TypeMixin
 
+from flask_sa_session import db_session
+
 
 class TempMatchEnum(Enum):
     """
@@ -38,9 +40,9 @@ class TempMatchEnum(Enum):
         return cls.names.get(member)
 
 
-class Yeast(Base):
+class Yeast(Base, TypeMixin):
     __tablename__ = "yeasts"
-    name = Column(String(256), nullable=False)
+    # name = Column(String(256), nullable=False)
     brand = Column(String(256), nullable=True)
     ideal_low_temp = Column(Integer, nullable=False)
     ideal_high_temp = Column(Integer, nullable=False)
@@ -49,13 +51,6 @@ class Yeast(Base):
     description = Column(String(1024), nullable=True)
     yeast_type_id = Column(Integer, ForeignKey("yeast_types.id"), nullable=False)
     yeast_type = relationship("YeastType", uselist=False)
-
-    @classmethod
-    def choices(cls, db_session: scoped_session):
-        return [
-            (record.id, f"{record.name} - {record.yeast_type.name}")
-            for record in db_session.query(cls).all()
-        ]
 
     def check_temp_match(self, yeast2: "Yeast") -> Tuple[TempMatchEnum, int, int]:
         """

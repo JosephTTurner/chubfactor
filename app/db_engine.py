@@ -18,7 +18,9 @@ connection_string = (
 
 engine = create_engine(connection_string)
 
-Session = scoped_session(sessionmaker(bind=engine))
+session_factory = sessionmaker(bind=engine)
+
+Session = scoped_session(session_factory)
 
 
 @contextmanager
