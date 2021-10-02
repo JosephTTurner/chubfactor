@@ -73,17 +73,15 @@ upgrade_database: venv
 # PIPELINES(?)
 # -----------------------------------------------------------------------------------
 
-update_prod_make:
+update_prod:
 	ssh -i ~/.ssh/id_rsa-remote-ssh ${PROD_USER}@${PROD_SERVER} "cd workspace/chubfactor; make update;"
 
-update_prod:
+update_prod_bash:
 	ssh -i ~/.ssh/id_rsa-remote-ssh ${PROD_USER}@${PROD_SERVER} "~/update;"
 
 # test comment
 update:
 	cd ~/workspace/chubfactor/
-	eval "$$(ssh-agent -s)"
-	ssh-add ~/.ssh/id_rsa
 	git pull
 	make upgrade_database
 	~/restart_nginx
