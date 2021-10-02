@@ -57,7 +57,7 @@ setup_mysql:
 
 init_database: install_mysql setup_mysql upgrade_database
 
-reset_database: 
+reset_database:
 	sudo mysql -h ${MYSQL_HOST} -u root -e "${RESET_DATABASE}";\
 	alembic upgrade head;
 
@@ -70,10 +70,22 @@ upgrade_database: venv
 	alembic upgrade head
 # -----------------------------------------------------------------------------------
 
-# VERSION CONTROL
+# PIPELINES(?)
 # -----------------------------------------------------------------------------------
 
-update: 
+update_prod:
+	ssh -i ~/.ssh/id_rsa-remote-ssh ${PROD_USER}@${PROD_SERVER} "cd workspace/chubfactor; make update;"
+
+update_prod_bash:
+	ssh -i ~/.ssh/id_rsa-remote-ssh ${PROD_USER}@${PROD_SERVER} "~/update;"
+
+update:
+	cd ~/workspace/chubfactor/
+	eval "$(ssh-agent -s)"
+	ssh-add ~/.ssh/id_rsa
 	git pull
-	
+	make upgrade_database
+	~/restart_nginx
+	exit
+
 # -----------------------------------------------------------------------------------
