@@ -3,6 +3,8 @@ from os import urandom, getenv
 
 load_dotenv()
 
+DEBUG = bool(getenv("DEBUG"))
+
 DB_SCHEMA = getenv("DB_SCHEMA")
 DB_PORT = getenv("DB_PORT")
 DB_DIALECT = getenv("DB_DIALECT")

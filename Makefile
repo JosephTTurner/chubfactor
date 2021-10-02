@@ -40,19 +40,26 @@ run: venv upgrade_database
 	python$(PYTHON_VERSION) app/app.py
 
 
-# Database
+# -----------------------------------------------------------------------------------
+# DATABASE
 install_mysql:
 	sudo apt install mariadb-server;
 
 CREATE_DATABASE=create database if not exists ${MYSQL_DATABASE_NAME}
 CREATE_USER=use mysql; create or replace user '${MYSQL_DATABASE_NAME}'@'%' identified by '${MYSQL_PASSWORD}'
 GRANT_ALL_PRIVLEGES=grant all privileges on ${MYSQL_DATABASE_NAME}.* to '${MYSQL_DATABASE_NAME}'@'%' with grant option
+DROP_DATABASE=drop database ${MYSQL_DATABASE_NAME}
+RESET_DATABASE=${DROP_DATABASE}; ${CREATE_DATABASE}; ${CREATE_USER}; ${GRANT_ALL_PRIVLEGES}; flush privileges;
 
 setup_mysql:
 	sudo mysql -h ${MYSQL_HOST} -u root -e "${CREATE_DATABASE};";\
 	sudo mysql -h ${MYSQL_HOST} -u root -e "${CREATE_USER}; ${GRANT_ALL_PRIVLEGES}; flush privileges;";
 
 init_database: install_mysql setup_mysql upgrade_database
+
+reset_database: 
+	sudo mysql -h ${MYSQL_HOST} -u root -e "${RESET_DATABASE}";\
+	alembic upgrade head;
 
 downgrade_database: venv
 	. venv/bin/activate; \
@@ -61,4 +68,12 @@ downgrade_database: venv
 upgrade_database: venv
 	. venv/bin/activate; \
 	alembic upgrade head
+# -----------------------------------------------------------------------------------
 
+# VERSION CONTROL
+# -----------------------------------------------------------------------------------
+
+update: 
+	git pull
+	
+# -----------------------------------------------------------------------------------

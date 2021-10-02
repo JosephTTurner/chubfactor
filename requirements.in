@@ -16,3 +16,4 @@ mysql-connector-python
 mysqlclient
 
 greenlet
+uwsgi

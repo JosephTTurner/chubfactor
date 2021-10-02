@@ -66,6 +66,8 @@ sqlalchemy==1.4.25
     #   alembic
 toml==0.10.2
     # via pytest
+uwsgi==2.0.19.1
+    # via -r /home/pi/workspace/chubfactor/requirements.in
 werkzeug==2.0.1
     # via flask
 wtforms==2.3.3

@@ -32,7 +32,7 @@ def upgrade():
         db_session.add(rock_what_you_got)
         db_session.add(so_chubby)
 
-        isaac = Brewer(nick_name="Brewnami", chub_factor=never_not)
+        isaac = Brewer(nick_name="Brunami", chub_factor=never_not)
         jerome = Brewer(nick_name="Brewsydon", chub_factor=never_not)
         joseph = Brewer(nick_name="Hoptimus Prime", chub_factor=rock_what_you_got)
         db_session.add(isaac)
