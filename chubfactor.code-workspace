@@ -6,12 +6,16 @@
 	],
 	"settings": {
 		"python.testing.pytestArgs": [
-        	"app"
+        	"."
     	],
 		"python.testing.unittestEnabled": false,
 		"python.testing.pytestEnabled": true,
 		"python.defaultInterpreterPath": "venv/bin/python",
 		"python.analysis.autoImportCompletions": true,
+        "python.analysis.useLibraryCodeForTypes": true,
+        "python.analysis.autoSearchPaths": true,
+        "python.autoComplete.showAdvancedMembers": true,
+        "python.linting.enabled": true,
 		"files.associations": {
 			"*.html": "jinja-html",
 			"*.j2": "jinja-html",
@@ -21,7 +25,7 @@
         "emmet.includeLanguages": { "jinja-html": "html" },
         "editor.defaultFormatter": "vscode.emmet",
 		"python.analysis.extraPaths": [
-			"app"
+			"."
 		],
 		"python.autoComplete.extraPaths": [
 			"app"

@@ -27,8 +27,8 @@ import webapp.models.color_model
 import webapp.models.brew_model
 import webapp.models.brewer_model
 import webapp.models.recipe_model
-from models.base_model import Base
-from db_engine import engine, connection_string
+from core.models.base_model import Base
+from core.db_engine import engine, connection_string
 ...
 
 target_metadata = Base.metadata
