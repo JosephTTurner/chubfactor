@@ -3,8 +3,6 @@ from sqlalchemy.orm.session import sessionmaker
 from sqlalchemy.sql.ddl import CreateSchema
 from sqlalchemy import create_engine
 from contextlib import contextmanager
-from flask_sqlalchemy_session import flask_scoped_session
-from app import app
 
 #
 from core.config import config
@@ -24,7 +22,6 @@ session_factory = sessionmaker(bind=engine)
 
 Session = scoped_session(session_factory)
 
-db_session = flask_scoped_session(session_factory,app)
 
 @contextmanager
 def db_session_scope() -> Session:

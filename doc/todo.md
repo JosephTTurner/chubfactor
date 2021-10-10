@@ -15,6 +15,10 @@
 ---
 ## Benchmarks
 - ~~Basic app structure~~
+- Improve structure
+    - ~~Separate core code as its own blueprint~~
+    - Create repo of core code that can be managed as a reusable submodule
+    - Create scripts in core code that initialize/explode app structure
 - ~~Use git for version control~~
 - ~~Streamline schema migrations~~
 - ~~Display one page with dummy data pulled from database~~
@@ -23,10 +27,10 @@
     - ~~database~~
     - ~~make-ify~~
 - ~~SSH-Remote to pi from VS Code on Windows (using keys - no password everytime)~~
-- Use hosted repository
-    - Pay to make private
+- ~~Use hosted repository~~
+    - ~~GitHub~~
 - Host remotely
-    - Raspberry Pi
+    - ~~Raspberry Pi~~
     - AWS
         - RDS
         - EC2

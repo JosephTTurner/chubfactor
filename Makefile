@@ -37,7 +37,7 @@ clean: clean_py
 
 run: venv upgrade_database
 	. venv/bin/activate; \
-	python$(PYTHON_VERSION) app.py
+	python$(PYTHON_VERSION) -m app
 
 
 # -----------------------------------------------------------------------------------
